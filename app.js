@@ -68,6 +68,13 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1200;
+  console.log(parseInt(duration))
+  if(duration<0){
+    const div = document.createElement("div");
+    div.innerHTML=`<p id="err">nagative value is not allowed !!</p>`;
+    sliderContainer.appendChild(div);
+    return;
+  }
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -80,6 +87,7 @@ const createSlider = () => {
   timer = setInterval(function () {
     slideIndex++;
     changeSlide(slideIndex);
+
   }, duration);
 }
 
